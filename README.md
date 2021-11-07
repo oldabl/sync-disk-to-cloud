@@ -16,11 +16,13 @@ It replicates exactly the dirToSync directory, meaning:
 - if a file is updated in the source directory, the script will copy the newly updated file into the destination directory
 - if a file is updated in the destination directory, the script won't replace it with the file in the source directory
 
-## One-time sync
-It creates a zip archive of the dirToBackup directory and stores it in the whereToBackup directory.
+## Create backup
+It creates a snapshot of a directory and stores it in another directory.
 ### Prerequisites
 Need to have zip installed.
 ### Parameters
 The parameters are set directly inside the script:
 - dirToBackup: source directory to archive as backup
 - whereToStoreBackup: destination directory where to store the backup archive
+### Details
+It creates a zip archive of the dirToBackup directory and stores it in the whereToBackup directory.

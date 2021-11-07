@@ -22,4 +22,7 @@ fi
 
 # Create archive to back up
 suffix=`date +"%Y%m%d%H%M%S"`
-rsync -aurhvi --delete --progress --bwlimit=5000 "$dirToBackup" "$whereToStoreBackup"
+dirname=`basename "$dirToBackup"`
+backupName="$dirname$suffix.zip"
+zip -r "$backupName" "$dirToBackup"
+mv "$backupName" "$whereToStoreBackup"
