@@ -2,8 +2,8 @@
 ## Live sync
 Originally made to sync a directory between an external volume (Elements1TB) to an online disk (in this default case pCloud), its bandwith is limited to make sure pCloud has time to upload files while they are being copied into it.
 ### Parameters
-- src: source directory to synchronise
-- dst: destination directory where to synchronise the source directory
+- dirToSync: source directory to synchronise
+- whereToSync: destination directory where to synchronise the source directory
 ### Details
 It replicates exactly the directory, meaning:
 - the first run can take hours because it needs to copy the whole directory
