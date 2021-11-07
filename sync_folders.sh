@@ -1,8 +1,11 @@
-#Parameters
+# Parameters
 src="/Volumes/Elements1TB/Photography/Photos/"
 dst="/Users/olivierdabl/pCloud Drive/Photography/Backups/Live"
 
+# Check source directory exists
 [ ! -d "$src" ] && echo "Source directory '$src' does not exist" && exit 1
+
+# Check destination directory exists
 if [ ! -d "$dst" ]
 then
   echo "Destination directory '$dst' does not exist"
