@@ -21,8 +21,8 @@ then
 fi
 
 # Create archive to back up
-suffix=`date +"%Y%m%d%H%M%S"`
-dirname=`basename "$dirToBackup"`
-backupName="$dirname$suffix.zip"
-zip -r "$backupName" "$dirToBackup"
-mv "$backupName" "$whereToStoreBackup"
+dirName=`date +"%Y%m%d%H%M%S"`
+mkdir -p "$whereToStoreBackup/$dirName"
+zipName=`basename "$dirToBackup"`
+output="$zipName.zip"
+zip -rv -s 100m "$whereToStoreBackup/$dirName/$output" "$dirToBackup"
