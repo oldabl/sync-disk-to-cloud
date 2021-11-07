@@ -7,4 +7,3 @@ It replicates exactly the directory, meaning:
 - if a file is deleted in the source directory, the script will delete it in the destination directory
 - if a file is updated in the source directory, the script will copy the newly updated file into the destination directory
 - if a file is updated in the destination directory, the script won't replace it with the file in the source directory
--
