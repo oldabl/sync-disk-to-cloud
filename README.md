@@ -26,4 +26,4 @@ The parameters are set directly inside the script:
 - dirToBackup: source directory to archive as backup
 - whereToStoreBackup: destination directory where to store the backup archive
 ### Details
-It creates a zip archive of the dirToBackup directory and stores it in the whereToBackup directory.
+It creates a zip archive of the dirToBackup directory and stores it in the whereToStoreBackup directory.
