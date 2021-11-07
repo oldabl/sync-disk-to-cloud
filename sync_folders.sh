@@ -1,24 +1,24 @@
 # Parameters
-src="/Volumes/Elements1TB/Photography/Photos/"
-dst="/Users/olivierdabl/pCloud Drive/Photography/Backups/Live"
+dirToSync="/Volumes/Elements1TB/Photography/Photos/"
+whereToSync="/Users/olivierdabl/pCloud Drive/Photography/Backups/Live"
 
 # Check source directory exists
-[ ! -d "$src" ] && echo "Source directory '$src' does not exist" && exit 1
+[ ! -d "$dirToSync" ] && echo "Source directory '$dirToSync' does not exist" && exit 1
 
 # Check destination directory exists
-if [ ! -d "$dst" ]
+if [ ! -d "$whereToSync" ]
 then
-  echo "Destination directory '$dst' does not exist"
+  echo "Destination directory '$whereToSync' does not exist"
   read -t 20 -p "Create this directory? (y/N) " createDirectory
   if [ "$createDirectory" = "y" ]
   then
-    echo "Creating directory '$dst'"
-    mkdir -p "$dst"
+    echo "Creating directory '$whereToSync'"
+    mkdir -p "$whereToSync"
   else
     echo "Not creating directory, exiting"
     exit 0
   fi
 fi
 
-echo "Launching synchronisation"
-rsync -aurhvi --delete --progress --bwlimit=5000 "$src" "$dst"
+# Launch synchronisation
+rsync -aurhvi --delete --progress --bwlimit=5000 "$dirToSync" "$whereToSync"
