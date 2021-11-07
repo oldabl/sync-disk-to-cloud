@@ -20,9 +20,15 @@ then
   fi
 fi
 
-# Create archive to back up
+# Create path where to store the archives
 dirName=`date +"%Y%m%d%H%M%S"`
-mkdir -p "$whereToStoreBackup/$dirName"
+dirPath="$whereToStoreBackup/$dirName"
+mkdir -p "$dirPath"
+
+# Work out name of archive
 zipName=`basename "$dirToBackup"`
 output="$zipName.zip"
-zip -rv -s 100m "$whereToStoreBackup/$dirName/$output" "$dirToBackup"
+
+# Archive and store
+pathToOutput="$dirPath/$output"
+zip -rv -s 1g "$pathToOutput" "$dirToBackup"
