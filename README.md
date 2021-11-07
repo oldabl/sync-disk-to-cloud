@@ -1,4 +1,5 @@
 # These scripts allow to sync or create backups
+Make sure that the disk you're copying onto has enough space, or that your internet upload speed is fast enough for uploading as the program copies.
 
 ## Live sync
 Originally made to sync a directory between an external volume (Elements1TB) to an online disk (in this default case pCloud), its bandwith is limited to make sure pCloud has time to upload files while they are being copied into it.
