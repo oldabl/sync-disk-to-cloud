@@ -1,22 +1,41 @@
 import os, subprocess
 
-# Generic parameters
-dirToSyncBase = "/mnt/f/Photography"
-whereToSyncBase = "/mnt/p/My Folder/Activity - Photography/Backups"
+# Debug mode
+debug = False
 
-# Subdirs to sync
-subdirsToSync = ["Photos", "Timelapses", "Etsy Products", "Videos", "Stock"]
+# Path to cloud disk
+cloudPath = "/mnt/p/My Folder"
 
-# Rync all subdirectories
-for subdir in subdirsToSync:
-  fullSubdirToSync = os.path.join(dirToSyncBase, subdir, "")
+# List of directories to sync up
+whatToSync = [
+  { # Photography
+    "diskSourceSubdir": "/mnt/f/Photography",
+    "cloudDestSubdir": "Activity - Photography/Backups",
+    "subdirsToSync": ["Photos", "Timelapses", "Etsy Products", "Videos", "Stock"]
+  },
+  { # Music
+    "diskSourceSubdir": "/mnt/c/Users/obrun/Music",
+    "cloudDestSubdir": "Activity - Music/Backups",
+    "subdirsToSync": ["Compositions"]
+  }
+]
 
-  if not os.path.isdir(fullSubdirToSync):
-    print(fullSubdirToSync + " is not a directory")
-    continue
+# Rsync all subdirectories
+for itemToSync in whatToSync:
+  for subdir in itemToSync["subdirsToSync"]:
+    fullSubdirToSync = os.path.join(itemToSync["diskSourceSubdir"], subdir, "")
 
-  whereToSyncSubdir = os.path.join(whereToSyncBase, "Live " + subdir, "")
+    if not os.path.isdir(fullSubdirToSync):
+      print(fullSubdirToSync + " is not a directory")
+      continue
 
-  print("Backing up " + fullSubdirToSync + " to " + whereToSyncSubdir)
+    whereToSyncSubdir = os.path.join(cloudPath, itemToSync["cloudDestSubdir"], "Live " + subdir, "")
 
-  subprocess.call(["rsync", "-aurhvi", "--progress", "--delete", fullSubdirToSync, whereToSyncSubdir])
+    print("Backing up " + fullSubdirToSync + " to " + whereToSyncSubdir)
+
+    if debug:
+      extraParams = "-aurhviP"
+    else:
+      extraParams = "-aurh"
+
+    subprocess.call(["rsync", extraParams, "--delete", fullSubdirToSync, whereToSyncSubdir])
