@@ -24,12 +24,14 @@ whatToSync = [
 for itemToSync in whatToSync:
   for subdir in itemToSync["subdirsToSync"]:
     fullSubdirToSync = os.path.join(itemToSync["diskSourceSubdir"], subdir, "")
-
     if not os.path.isdir(fullSubdirToSync):
-      print(fullSubdirToSync + " is not a directory")
+      print("Source " + fullSubdirToSync + " is not a directory")
       continue
 
     whereToSyncSubdir = os.path.join(cloudPath, itemToSync["cloudDestSubdir"], "Live " + subdir, "")
+    if not os.path.isdir(whereToSyncSubdir):
+      print("Destination " + whereToSyncSubdir + " is not a directory")
+      continue
 
     print("Backing up " + fullSubdirToSync + " to " + whereToSyncSubdir)
 
